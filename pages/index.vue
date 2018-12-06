@@ -1,17 +1,17 @@
 <template>
-  <section class="section">        
+  <div>
     <div 
       class="content has-text-centered" 
-      style="width:100%; height:500px; position:fixed">            
+      style="position:fixed; top:4px; right:50%; z-index:100">            
       <svg 
         version="1.1"
         xmlns="http://www.w3.org/2000/svg" 
         xmlns:xlink="http://www.w3.org/1999/xlink" 
         x="0px" 
         y="0px" 
-        width="100%"
-        height="100%" 
-        viewBox="0 0 100 100"
+        width="100px"
+        height="100px" 
+        viewBox="0 0 50 50"
         xml:space="preserve"               
         @mouseover="spinFlower"
         @mouseout="stopFlower">
@@ -34,7 +34,7 @@
         </defs>
         <g           
           ref="flowerClip"                 
-          transform="translate(45,40)">
+          transform="translate(25,20)">
           <circle 
             v-for="circle in circles" 
             :key="circle.circId" 
@@ -48,7 +48,7 @@
         </g>
         <g           
           ref="flowerCircle"
-          transform="translate(45,40)">                                
+          transform="translate(25,20)">                                
           <circle 
             v-for="circle in circles" 
             :key="circle.circId" 
@@ -63,11 +63,27 @@
         </g>
       </svg>
     </div>
+    <section class="hero is-medium section-gradient">
+      <div class="hero-body">        
+        <div 
+          class="container">
+          <div class="columns">
+            <div class="column">
+              <h1 class="title has-text-white-bis">
+                A fullstack developer
+              </h1>
+              <h2 class="subtitle has-text-white-bis">
+                with Sales, Marketing, Business Development, Account Management, Contract and Negotiations experience
+              </h2>
+            </div>
+            <div class="column"/>
+          </div>
+    </div></div></section>
     <div style="width:100%; height:500px"/>
     <div style="height:20px;"/>
     <div ref="testTrigger">asdfasdf</div>
     <div style="height:400px;"/>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -103,7 +119,7 @@ export default {
           cx: 10,
           cy: 0,
           r: 10,
-          fill: 'red',
+          fill: '#845E40',
           circId: 'b',
           clipPath: 'url(#mask_b)'
         },
@@ -111,7 +127,7 @@ export default {
           cx: 10,
           cy: 0,
           r: 10,
-          fill: 'red',
+          fill: '#4a00e0',
           transform: 'rotate(60, 0, 0)',
           circId: 'c',
           clipPath: 'url(#mask_b)'
@@ -120,7 +136,7 @@ export default {
           cx: 10,
           cy: 0,
           r: 10,
-          fill: 'red',
+          fill: '#845E40',
           transform: 'rotate(120, 0, 0)',
           circId: 'd',
           clipPath: 'url(#mask_b)'
@@ -129,7 +145,7 @@ export default {
           cx: 10,
           cy: 0,
           r: 10,
-          fill: 'red',
+          fill: '#4a00e0',
           transform: 'rotate(180, 0, 0)',
           circId: 'e',
           clipPath: 'url(#mask_b)'
@@ -138,7 +154,7 @@ export default {
           cx: 10,
           cy: 0,
           r: 10,
-          fill: 'red',
+          fill: '#845E40',
           transform: 'rotate(240, 0, 0)',
           circId: 'f',
           clipPath: 'url(#mask_b)'
@@ -147,7 +163,7 @@ export default {
           cx: 10,
           cy: 0,
           r: 10,
-          fill: 'red',
+          fill: '#4a00e0',
           transform: 'rotate(300, 0, 0)',
           circId: 'g',
           clipPath: 'url(#mask_b)'
@@ -160,14 +176,18 @@ export default {
   },
   methods: {
     spinFlower() {
-      if (this.timeline.progress() == 1) {
-        this.timeline.restart()
-      } else {
-        this.timeline.resume()
-      }
+      this.timeline = new TimelineLite()
+      this.timeline.to(this.$refs.flowerCircle, 3, {
+        rotation: 360,
+        transformOrigin: '50% 50%'
+      })
     },
     stopFlower() {
-      this.timeline.pause()
+      this.timeline = new TimelineLite()
+      this.timeline.to(this.$refs.flowerCircle, 3, {
+        rotation: -360,
+        transformOrigin: '50% 50%'
+      })
     },
     animateHome() {
       this.timeline = new TimelineLite()
@@ -180,21 +200,6 @@ export default {
       const flowerCircle = this.$refs.flowerCircle
       this.scrollTimeline = new TimelineLite()
       this.scrollTimeline
-        .to(flowerClip, 1, {
-          scale: 0.1,
-          rotation: 720,
-          opacity: 0,
-          transformOrigin: '0% 0%',
-          skewX: 45
-        })
-        .to(flowerClip, 3, {
-          x: 45,
-          y: 40,
-          skewX: 0,
-          opacity: 1,
-          scale: 1,
-          rotation: -720
-        })
         .to(flowerClip, 3, {
           rotation: 1080,
           transformOrigin: '50% 50%'
@@ -210,7 +215,7 @@ export default {
         )
         .to(
           flowerCircle,
-          3,
+          1,
           {
             scale: 0.5
           },
@@ -218,24 +223,12 @@ export default {
         )
         .to(
           flowerClip,
-          3,
+          1,
           {
             scale: 0.5
           },
           '-=1'
         )
-        .to(flowerCircle, 3, {
-          scale: 2
-        })
-        .to(
-          flowerClip,
-          3,
-          {
-            scale: 2
-          },
-          '-=3'
-        )
-
       // use scrollmagic
       this.scrollCtrl = new this.$scrollmagic.Controller()
       let flowerScene = new this.$scrollmagic.Scene({
@@ -248,4 +241,25 @@ export default {
 }
 </script>
 <style>
+.section-gradient {
+  background: #8e2de2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #4a00e0,
+    #8e2de2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #4a00e0,
+    #8e2de2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.hero-body {
+  background-image: url('../assets/multi-skillz.png');
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position-x: right;
+  background-position-y: bottom;
+}
 </style>

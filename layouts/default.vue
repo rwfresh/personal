@@ -4,7 +4,7 @@
     <section>
       <nav 
         ref="navbar"
-        class="navbar is-spaced"
+        class="navbar is-spaced has-shadow is-transparent is-fixed-top"
         role="navigation" 
         aria-label="main navigation">
         <div class="container">
@@ -12,13 +12,8 @@
             <a
               class="navbar-item" 
               href="/">
-              <wifi-logo v-if="showLogo" />
-            </a>            
-            <div class="navbar-burger">
-              <span/>
-              <span/>
-              <span/>
-            </div>
+              <logo v-if="showLogo" />
+            </a>                        
           </div>         
           <div class="navbar-end">                        
             <a 
@@ -44,11 +39,11 @@
 </template>
 
 <script>
-import wifiLogo from '@/components/WifiLogo'
+import logo from '@/components/Logo'
 import intro from '@/components/Intro'
 
 export default {
-  components: { wifiLogo, intro },
+  components: { logo, intro },
   data() {
     return {
       showLogo: false

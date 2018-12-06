@@ -1,6 +1,6 @@
 # nuxt-static
 
-> taking a run at a nuxt.js site
+> my personal nuxt.js site
 
 ## Build Setup
 
@@ -19,4 +19,3 @@ $ npm start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).

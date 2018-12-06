@@ -1,7 +1,7 @@
 {
-  "name": "nuxt-static",
+  "name": "personalsite",
   "version": "1.0.0",
-  "description": "taking a run at a nuxt.js site",
+  "description": "nuxt.js static site served from netlify CI/CD",
   "author": "rich williams",
   "private": true,
   "scripts": {
