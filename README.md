@@ -1,6 +1,6 @@
 # nuxt-static
 
-> my personal nuxt.js site
+> gasp animations nuxt.js site
 
 ## Build Setup
 
